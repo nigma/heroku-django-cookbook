@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+indent() {
+    RE="s/^/       /"
+    [ $(uname) == "Darwin" ] && sed -l "$RE" || sed -u "$RE"
+}
+
+
+echo "Check if django-compressor is enabled."
+python $MANAGE_FILE help compress &> /dev/null && RUN_COMPRESS=true
+
+if [ "$RUN_COMPRESS" ]; then
+    echo "-----> Compressing static files"
+    python $MANAGE_FILE compress 2>&1 | indent
+
+    [ $? -ne 0 ] && {
+        echo " !     Error running manage.py compress."
+        echo "       https://github.com/nigma/heroku-django-cookbook"
+    }
+fi
+
+echo
