@@ -5,7 +5,6 @@ indent() {
     [ $(uname) == "Darwin" ] && sed -l "$RE" || sed -u "$RE"
 }
 
-
 echo "Check if django-compressor is enabled."
 python $MANAGE_FILE help compress &> /dev/null && RUN_COMPRESS=true
 
