@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 NODE_VERSION=0.8.9
 NODE_BASENAME=node-v${NODE_VERSION}-linux-x64
@@ -15,11 +16,12 @@ tar -zxvf tmp-nodejs.tar.gz > /dev/null
 rm tmp-nodejs.tar.gz
 popd
 
-pushd $BUILD_DIR/.heroku/vendor
+mkdir -v -p $BUILD_DIR/.heroku
+pushd $BUILD_DIR/.heroku
 rm -rf node
 mv $tempdir/$NODE_BASENAME node
 popd
 
-ln -s ../../vendor/node/bin/node .heroku/venv/bin/node
-ln -s ../../vendor/node/bin/node-waf .heroku/venv/bin/node-waf
-ln -s ../../vendor/node/bin/npm .heroku/venv/bin/npm
+ln -s ../.heroku/node/bin/node bin/node
+ln -s ../.heroku/node/bin/node-waf bin/node-waf
+ln -s ../.heroku/node/bin/npm bin/npm
