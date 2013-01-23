@@ -78,3 +78,13 @@ CACHES = herokuify.get_cache_config()       # Cache config for Memcache/MemCachi
 ```
 
 See the [project page](https://github.com/nigma/django-herokuify) for more information.
+
+Clean virtualenv
+----------------
+
+Heroku caches Python virtual environment and all installed packages between
+project deploys.
+
+Since the ``CLEAN_VIRTUALENV`` flag has been removed from the buildpack,
+currently the only way to clean app cache is by
+[changing the runtime](https://devcenter.heroku.com/articles/python-runtimes#changing-runtimes).
