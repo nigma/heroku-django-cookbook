@@ -32,24 +32,28 @@ a separate fork of Heroku's buildpack.
 The only thing you need to do is to create a proper `bin/post_compile` bash
 script in the root directory of your application.
 
-The [bin](https://github.com/nigma/heroku-django-cookbook/tree/master/bin) directory
-contains a set of scripts that can be used to install NodeJS/Less and invoke
-the `manage.py compress` command in your Django application:
+The [bin](https://github.com/nigma/heroku-django-cookbook/tree/master/bin) and
+[.heroku](https://github.com/nigma/heroku-django-cookbook/tree/master/.heroku) directories
+contain a set of scripts that can be used to install NodeJS/Less and invoke
+`manage.py collectstatic` and `manage.py compress` commands in your Django application:
 
 - [bin/post_compile](https://github.com/nigma/heroku-django-cookbook/tree/master/bin/post_compile)
 - [bin/install_nodejs](https://github.com/nigma/heroku-django-cookbook/tree/master/bin/install_nodejs)
 - [bin/install_less](https://github.com/nigma/heroku-django-cookbook/tree/master/bin/install_less)
+- [bin/run_collectstatic](https://github.com/nigma/heroku-django-cookbook/tree/master/bin/run_collectstatic)
 - [bin/run_compress](https://github.com/nigma/heroku-django-cookbook/tree/master/bin/run_compress)
+- [.heroku/collectstatic_disabled](https://github.com/nigma/heroku-django-cookbook/tree/master/.heroku/collectstatic_disabled)
 
 Just copy them over to your app reposiory and have your Less stylesheets
 compiled with an assets compressor like
 [Django Compressor](https://github.com/jezdez/django_compressor).
+
+Note: the empty ``/.heroku/collectstatic_disabled`` file deactivates the default collectstatic
+build step that is part of the Heroku's buildpack. This will prevent the build script from doing
+unnecessary work that is already handled by the above scripts.
 
 A note on hosting static files on Amazon S3. Remember to enable the
 [environment variables](https://devcenter.heroku.com/articles/django-assets#config-vars-during-build)
 if you are using django-storages and uploading static assets to S3:
 
 `heroku labs:enable user-env-compile`
-
-
-TBC
