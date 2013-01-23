@@ -57,3 +57,24 @@ A note on hosting static files on Amazon S3. Remember to enable the
 if you are using django-storages and uploading static assets to S3:
 
 `heroku labs:enable user-env-compile`
+
+
+Automatic Django configuration and utilities for Heroku
+-------------------------------------------------------
+
+[django-herokuify](https://github.com/nigma/django-herokuify) is a Django settings helper
+that makes is very easy to configure database, cache, storage, email and other
+common services for your Django project running on Heroku:
+
+```python
+import herokuify
+
+from herokuify.common import *              # Common settings, SSL proxy header
+from herokuify.aws import *                 # AWS access keys as configured in env
+from herokuify.mail.mailgun import *        # Email settings for Mailgun add-on
+
+DATABASES = herokuify.get_db_config()       # Database config
+CACHES = herokuify.get_cache_config()       # Cache config for Memcache/MemCachier
+```
+
+See the [project page](https://github.com/nigma/django-herokuify) for more information.
