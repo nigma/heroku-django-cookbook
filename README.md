@@ -79,6 +79,12 @@ CACHES = herokuify.get_cache_config()       # Cache config for Memcache/MemCachi
 
 See the [project page](https://github.com/nigma/django-herokuify) for more information.
 
+All in one
+----------
+
+[Django Modern Template](https://github.com/nigma/django-modern-template) is a project
+template for easy bootstrapping a Django project that can be deployed on Heroku.
+
 Clean virtualenv
 ----------------
 
