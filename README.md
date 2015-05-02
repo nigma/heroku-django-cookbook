@@ -44,7 +44,7 @@ contain a set of scripts that can be used to install NodeJS/Less and invoke
 - [bin/run_compress](https://github.com/nigma/heroku-django-cookbook/tree/master/bin/run_compress)
 - [.heroku/collectstatic_disabled](https://github.com/nigma/heroku-django-cookbook/tree/master/.heroku/collectstatic_disabled)
 
-Just copy them over to your app reposiory and have your Less stylesheets
+Just copy them over to your app repository and have your Less stylesheets
 compiled with an assets compressor like
 [Django Compressor](https://github.com/jezdez/django_compressor).
 
